@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spyglass</title>
+<link rel="icon" href="assets/icon.svg">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/cards.css">
+<link rel="stylesheet" href="css/panel.css">
+</head>
+<body>
+<canvas id="rain" aria-hidden="true"></canvas>
+
+<header class="top">
+  <div class="brand">SPYGLASS<span class="cursor">_</span></div>
+  <div class="case">
+    <label for="caseSel">CASE</label>
+    <select id="caseSel"></select>
+    <button id="newCase" class="ghost" title="Start a new case">+ NEW</button>
+    <button id="openFolder" class="ghost" title="Open this case's folder">FOLDER</button>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="left">
+    <div id="drop" class="search">
+      <span class="prompt">&gt;</span>
+      <input id="q" autocomplete="off" spellcheck="false"
+             placeholder="type a name, company, username, email, phone, website or link">
+      <button id="pick" class="ghost" title="Choose a photo or document from this PC">FILE</button>
+      <input id="fileInput" type="file" hidden>
+    </div>
+    <div class="hint" id="hint">Or drop a photo or document anywhere on this page.</div>
+    <div class="chips" id="chips" role="radiogroup" aria-label="What is it?"></div>
+
+    <div class="bar" id="bar" hidden>
+      <span id="barText"></span>
+      <button id="openAll" class="ghost">OPEN ALL WEBSITES</button>
+    </div>
+
+    <div id="sections"></div>
+
+    <div class="foot">
+      <button id="addTool" class="ghost">+ ADD YOUR OWN TOOL</button>
+      <button id="showHidden" class="ghost">SHOW HIDDEN TOOLS</button>
+      <span class="free">Everything here is free. Some sites ask you to sign in.</span>
+    </div>
+  </section>
+
+  <aside class="panel">
+    <nav class="tabs" role="tablist">
+      <button role="tab" data-tab="results" class="on">RESULTS</button>
+      <button role="tab" data-tab="notes">NOTES</button>
+      <button role="tab" data-tab="history">HISTORY</button>
+      <button role="tab" data-tab="learn">LEARN</button>
+    </nav>
+    <div class="tab" id="tab-results">
+      <div class="empty" id="noResults">Results from tools that run on this PC show up here
+        and are saved in the case folder.</div>
+      <div id="jobs"></div>
+    </div>
+    <div class="tab" id="tab-notes" hidden>
+      <textarea id="notes" spellcheck="true" placeholder="Notes for this case. Saved as you type."></textarea>
+      <div class="saved" id="saved"></div>
+    </div>
+    <div class="tab" id="tab-history" hidden>
+      <div class="empty" id="noHistory">Every lookup in this case is listed here with the time.</div>
+      <ol id="history"></ol>
+    </div>
+    <div class="tab" id="tab-learn" hidden>
+      <div class="empty">Free guides and practice. Opens in your browser.</div>
+      <ul id="learn"></ul>
+    </div>
+  </aside>
+</main>
+
+<dialog id="toolDlg">
+  <form method="dialog" id="toolForm">
+    <h2>ADD YOUR OWN TOOL</h2>
+    <label>What it does <input name="title" required maxlength="80" placeholder="e.g. Search state court records"></label>
+    <label>Short description <input name="detail" maxlength="300"></label>
+    <label>Tool name <input name="tool" maxlength="40" placeholder="optional"></label>
+    <fieldset class="kind">
+      <legend>It is a</legend>
+      <label><input type="radio" name="kind" value="web" checked> website</label>
+      <label><input type="radio" name="kind" value="pc"> program on this PC</label>
+    </fieldset>
+    <label id="urlRow">Web address <input name="url" placeholder="https://example.com/search?q={query}">
+      <small>Put <code>{query}</code> where the search words go.</small></label>
+    <label id="cmdRow" hidden>Command <input name="cmd" placeholder="mytool --search {query}">
+      <small>Put <code>{query}</code> where the search words go. Runs in the case's files folder.</small></label>
+    <fieldset>
+      <legend>It looks up</legend>
+      <div id="typeBoxes" class="boxes"></div>
+    </fieldset>
+    <p class="err" id="toolErr"></p>
+    <div class="row">
+      <button value="cancel" class="ghost" formnovalidate>CANCEL</button>
+      <button id="toolSave" value="save">SAVE</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog id="caseDlg">
+  <form method="dialog" id="caseForm">
+    <h2>NEW CASE</h2>
+    <label>Name <input name="name" required maxlength="60" placeholder="e.g. Acme Corp due diligence"></label>
+    <p class="err" id="caseErr"></p>
+    <div class="row">
+      <button value="cancel" class="ghost" formnovalidate>CANCEL</button>
+      <button value="save">CREATE</button>
+    </div>
+  </form>
+</dialog>
+
+<div id="toast" role="status"></div>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

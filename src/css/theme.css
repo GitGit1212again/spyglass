@@ -1,0 +1,66 @@
+:root {
+  --bg: #000;
+  --panel: rgba(0, 14, 5, 0.88);
+  --card: rgba(0, 22, 8, 0.82);
+  --card-hi: rgba(0, 40, 14, 0.92);
+  --line: #0d4a1f;
+  --line-hi: #1f9a45;
+  --green: #00ff41;
+  --text: #b8ffcb;
+  --dim: #4fa86a;
+  --faint: #2a6a3c;
+  --warn: #ffd23f;
+  --bad: #ff5c5c;
+  --glow: 0 0 8px rgba(0, 255, 65, 0.55);
+  --mono: "Cascadia Mono", "Cascadia Code", Consolas, "Lucida Console", monospace;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+html { background: var(--bg); }
+body {
+  margin: 0;
+  background: transparent; /* lets the rain canvas (z-index -1) show through */
+  color: var(--text);
+  font: 14px/1.5 var(--mono);
+}
+
+button, input, select, textarea { font: inherit; color: inherit; }
+
+button {
+  background: var(--green);
+  color: #000;
+  border: 1px solid var(--green);
+  border-radius: 3px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+button:hover { box-shadow: var(--glow); }
+button:disabled { background: transparent; color: var(--faint); border-color: var(--faint); cursor: default; box-shadow: none; }
+button.ghost { background: transparent; color: var(--green); border-color: var(--line-hi); }
+button.ghost:hover { border-color: var(--green); }
+
+input, select, textarea {
+  background: #000;
+  border: 1px solid var(--line-hi);
+  border-radius: 3px;
+  padding: 6px 8px;
+  outline: none;
+}
+input:focus, select:focus, textarea:focus { border-color: var(--green); box-shadow: var(--glow); }
+
+a { color: var(--green); }
+:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
+
+#rain {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.16;
+  pointer-events: none;
+}

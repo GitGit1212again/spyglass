@@ -1,0 +1,47 @@
+# Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# Private data. Spyglass keeps cases and settings in ~/Documents/Spyglass, outside this folder;
+# these lines are a safety net in case someone points SPYGLASS_DATA or a tool at the project folder.
+# (Anchored with a leading "/" so src/js/data/ stays tracked.)
+/cases/
+/data/
+/settings.json
+*.sqlite
+*.sqlite3
+*.db
+
+# Logins, cookies and saved sessions (Instaloader, gallery-dl, yt-dlp, browsers)
+*.session
+session-*
+*.cookies
+cookies.txt
+cookies*.txt
+cookies.json
+.env
+.env.*
+*.pem
+*.key
+*.p12
+
+# Downloaded programs and installers: install ExifTool, Amass and ffmpeg yourself (see README)
+*.exe
+*.dll
+*.msi
+*.dmg
+*.pkg
+*.zip
+/helpers/bin/
+/tools/bin/
+
+# Scratch, logs, editor and OS files
+*.log
+*.tmp
+.idea/
+.vscode/
+.claude/
+.DS_Store
+Thumbs.db

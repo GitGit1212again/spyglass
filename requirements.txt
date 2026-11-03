@@ -1,0 +1,30 @@
+# Python packages Spyglass uses. Install into the app's own .venv (the launchers do this for you):
+#   python -m pip install -r requirements.txt
+# Needs Python 3.10 or newer (3.12 recommended). Minimums are the versions Spyglass was tested with
+# on Windows (Python 3.12); newer releases normally work.
+
+# Tools that run from the page (command-line programs the server starts)
+sherlock-project>=0.16.2
+maigret>=0.6.6
+holehe>=1.61
+ignorant>=1.2
+instaloader>=4.16
+gallery-dl>=1.32.18
+yt-dlp>=2026.10.26
+
+# Libraries used by the scripts in helpers/
+phonenumbers>=9.0.42
+dnspython>=2.9.0
+python-whois>=0.9.6
+certifi>=2026.10.23
+
+# Optional. Nothing in the built-in tool list needs these, but they were in the original .venv and
+# can be wired up with "+ ADD YOUR OWN TOOL". Remove the "#" to install them.
+# waybackpy>=3.0.6
+# shodan>=1.31.0
+# socialscan>=2.0.1
+
+# Optional. Only for tools/make_icon.py (redraws assets/spyglass.ico).
+# pillow>=13.0.0
+
+# Not installed by pip (see README): ExifTool, Amass, ffmpeg
